@@ -117,6 +117,8 @@ function checkWin() {
         statusDisplay.innerHTML = drawMessage();
         gameActive = false;
         statusDisplay.style.color = "rgb(251,100,204)";
+
+        //inciments and keeps track of ties
         ties++;
         draws.innerHTML = `Ties: ${ties}`;
         console.log(drawMessage()); //added change
