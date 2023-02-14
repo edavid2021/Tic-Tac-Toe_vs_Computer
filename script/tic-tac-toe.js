@@ -7,10 +7,12 @@ let comp = "O";
 //This is how we're linking the scores to the html classes
 let aI = document.querySelector("#aI");
 let player = document.querySelector("#player");
+let draws = document.querySelector('#draws');
 
 //Variables that hold the score incrimenting
 let pScore = 0;
 let aIscore = 0;
+let ties = 0;
 
 let gameState = ["", "", "", "", "", "", "", "", ""];
 
@@ -115,6 +117,8 @@ function checkWin() {
         statusDisplay.innerHTML = drawMessage();
         gameActive = false;
         statusDisplay.style.color = "rgb(251,100,204)";
+        ties++;
+        draws.innerHTML = `Ties: ${ties}`;
         console.log(drawMessage()); //added change
         return;
     }
