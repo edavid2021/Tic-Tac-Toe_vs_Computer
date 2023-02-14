@@ -53,6 +53,25 @@ function handleResultValidation() {
         }
         if (a === b && b === c) {
             roundWon = true;
+
+             //This highlights the winning cells and incriments the score board whenever theres a winner
+            document.getElementById(winCondition[0]).style.backgroundColor = "#82ccdd";
+            document.getElementById(winCondition[1]).style.backgroundColor = "#82ccdd";
+            document.getElementById(winCondition[2]).style.backgroundColor = "#82ccdd";
+            if(currentPlayer == "X"){
+                pScore++;
+                console.log(pScore)
+                player.innerHTML = `Player Score: ${pScore}`;
+              statusDisplay.innerHTML = winningMessage();
+                statusDisplay.style.color = "rgb(251,100,204)";
+            }
+            if(currentPlayer == comp){
+                aIscore++;
+                aI.innerHTML = `Ai Score: ${aIscore}`;
+                statusDisplay.innerHTML = winningMessage();
+                statusDisplay.style.color = "rgb(251,100,204)";
+            }
+            winningMessage();
             break
         }
     }
