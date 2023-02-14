@@ -2,6 +2,16 @@ const statusDisplay = document.querySelector('.status');
 
 let gameActive = true;
 let currentPlayer = "X";
+let comp = "O";
+
+//This is how we're linking the scores to the html classes
+let aI = document.querySelector("#aI");
+let player = document.querySelector("#player");
+
+//Variables that hold the score incrimenting
+let pScore = 0;
+let aIscore = 0;
+
 let gameState = ["", "", "", "", "", "", "", "", ""];
 
 const winningMessage = () => `Player ${currentPlayer} has won!`;
