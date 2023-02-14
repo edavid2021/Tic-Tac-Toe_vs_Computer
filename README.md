@@ -1,1 +1,11 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=10028626&assignment_repo_type=AssignmentRepo)
+<img src= "ezgif.com-video-to-gif.gif">
+
+# Tic-Tac-Toe
+
+### For this mini project, I was able to:
+
+* Add an AI player
+* Highlight winning cells
+* Create Score board
+* Track game in JavaScript Console
+
