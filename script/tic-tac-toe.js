@@ -42,19 +42,37 @@ function handlePlayerChange() {
 }
 
 function handleResultValidation() {
+    //if theres no winner, the players are changed and the computer makes a move
+    checkWin();
+
+    if (gameActive) {
+        handlePlayerChange();
+
+        handleComputerMove();
+    
+    }
+
+}
+
+function checkWin() {
+    //checks to see if there is a winner
+    //depending on that, it will run a set of instructons
     let roundWon = false;
     for (let i = 0; i <= 7; i++) {
         const winCondition = winningConditions[i];
         let a = gameState[winCondition[0]];
         let b = gameState[winCondition[1]];
         let c = gameState[winCondition[2]];
+        
+        //checks to see if 3 consecutive cells match, if not the game continues
         if (a === '' || b === '' || c === '') {
             continue;
         }
+        //if they are equal, the game stops and the cells are highlighted
         if (a === b && b === c) {
             roundWon = true;
-
-             //This highlights the winning cells and incriments the score board whenever theres a winner
+           
+            //This highlights the winning cells and incriments the score board whenever theres a winner
             document.getElementById(winCondition[0]).style.backgroundColor = "#82ccdd";
             document.getElementById(winCondition[1]).style.backgroundColor = "#82ccdd";
             document.getElementById(winCondition[2]).style.backgroundColor = "#82ccdd";
@@ -62,7 +80,7 @@ function handleResultValidation() {
                 pScore++;
                 console.log(pScore)
                 player.innerHTML = `Player Score: ${pScore}`;
-              statusDisplay.innerHTML = winningMessage();
+                statusDisplay.innerHTML = winningMessage();
                 statusDisplay.style.color = "rgb(251,100,204)";
             }
             if(currentPlayer == comp){
@@ -72,26 +90,56 @@ function handleResultValidation() {
                 statusDisplay.style.color = "rgb(251,100,204)";
             }
             winningMessage();
-            break
+            break;
         }
+        
     }
 
     if (roundWon) {
         statusDisplay.innerHTML = winningMessage();
         gameActive = false;
         statusDisplay.style.color = "rgb(251,100,204)";
-        return;
+        console.log(winningMessage()); //added change
+        return 1;
     }
+
+    //if theres a winner, display the winning message "__ is the winner"
+    //if theres no winner, display the draw message "game ended in a draw"
 
     let roundDraw = !gameState.includes("");
     if (roundDraw) {
         statusDisplay.innerHTML = drawMessage();
         gameActive = false;
         statusDisplay.style.color = "rgb(251,100,204)";
+        console.log(drawMessage()); //added change
         return;
     }
+}
 
-    handlePlayerChange();
+function handleComputerMove() {
+    //computer moves randomly and checks to see if it made a winning move.
+    //if not, it changes players and the game continues
+    pickMove()
+    if (!checkWin())
+        handlePlayerChange()
+}
+
+
+//added change
+function pickMove(){
+
+    //randomly finds available spot by looping through the gamespace
+    while(true) {
+        m = Math.floor(Math.random() * 8)
+        if (gameState[m] == '')
+            break;
+    }
+
+    gameState[m] = currentPlayer;
+    document.getElementById(m).innerHTML = currentPlayer;
+
+
+    // m will have the spot
 }
 
 function handleCellClick(clickedCellEvent) {
