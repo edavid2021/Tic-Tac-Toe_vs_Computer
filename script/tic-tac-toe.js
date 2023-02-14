@@ -34,11 +34,14 @@ const winningConditions = [
 function handleCellPlayed(clickedCell, clickedCellIndex) {
     gameState[clickedCellIndex] = currentPlayer;
     clickedCell.innerHTML = currentPlayer;
+    console.log("User moved to a cell");
+    console.log(clickedCellIndex);
 }
 
 function handlePlayerChange() {
     currentPlayer = currentPlayer === "X" ? "O" : "X";
     statusDisplay.innerHTML = currentPlayerTurn();
+    console.log(currentPlayer);
 }
 
 function handleResultValidation() {
@@ -48,8 +51,9 @@ function handleResultValidation() {
     if (gameActive) {
         handlePlayerChange();
 
-        handleComputerMove();
-    
+        //handleComputerMove();
+        //This creates a dely to make it seem like the computer is making a move
+    setTimeout(() => {handleComputerMove()}, 400)
     }
 
 }
@@ -78,7 +82,7 @@ function checkWin() {
             document.getElementById(winCondition[2]).style.backgroundColor = "#82ccdd";
             if(currentPlayer == "X"){
                 pScore++;
-                console.log(pScore)
+                //console.log(pScore)
                 player.innerHTML = `Player Score: ${pScore}`;
                 statusDisplay.innerHTML = winningMessage();
                 statusDisplay.style.color = "rgb(251,100,204)";
@@ -122,6 +126,8 @@ function handleComputerMove() {
     pickMove()
     if (!checkWin())
         handlePlayerChange()
+    
+    console.log("AI moved to a cell");
 }
 
 
@@ -146,6 +152,7 @@ function handleCellClick(clickedCellEvent) {
     const clickedCell = clickedCellEvent.target;
     const clickedCellIndex = parseInt(clickedCell.getAttribute('data-cell-index'));
 
+    //checks to see is the current cell is available and if the game is active
     if (gameState[clickedCellIndex] !== "" || !gameActive) {
         return;
     }
