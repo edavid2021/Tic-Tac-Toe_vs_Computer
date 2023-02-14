@@ -161,6 +161,10 @@ function handleRestartGame() {
     statusDisplay.style.color = "rgb(65, 65, 65)";
     statusDisplay.innerHTML = currentPlayerTurn();
     document.querySelectorAll('.cell').forEach(cell => cell.innerHTML = "");
+
+    //resets the background color of the game board to white
+    document.querySelectorAll('.cell').forEach(cell => cell.style.backgroundColor = "white");
+    console.log('game reset'); //added change
 }
 
 document.querySelectorAll('.cell').forEach(cell => cell.addEventListener('click', handleCellClick));
