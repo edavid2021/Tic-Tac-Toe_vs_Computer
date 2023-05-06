@@ -55,7 +55,7 @@ function handleResultValidation() {
 
         //handleComputerMove();
         //This creates a dely to make it seem like the computer is making a move
-    setTimeout(() => {handleComputerMove()}, 400)
+    setTimeout(() => {handleComputerMove()}, 800)
     }
 
 }
